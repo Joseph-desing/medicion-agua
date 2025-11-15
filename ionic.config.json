@@ -1,0 +1,7 @@
+{
+  "name": "medicion-agua",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
