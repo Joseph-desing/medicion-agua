@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Registrar Lectura</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-button expand="full" (click)="obtenerGPS()">Obtener GPS</ion-button>
+  <p>Lat: {{ lat }} | Lng: {{ lng }}</p>
+
+  <ion-input placeholder="Valor del medidor" [(ngModel)]="valor"></ion-input>
+  <ion-textarea placeholder="Observaciones" [(ngModel)]="observaciones"></ion-textarea>
+
+  <ion-button expand="full" (click)="tomarFoto('medidor')">
+    Foto del Medidor
+  </ion-button>
+  <img *ngIf="fotoMedidor" [src]="fotoMedidor" style="width: 100%; margin-top: 10px;">
+
+  <ion-button expand="full" (click)="tomarFoto('casa')">
+    Foto de la Casa
+  </ion-button>
+  <img *ngIf="fotoCasa" [src]="fotoCasa" style="width: 100%; margin-top: 10px;">
+
+  <ion-button expand="full" color="success" (click)="guardar()">Guardar</ion-button>
+
+</ion-content>

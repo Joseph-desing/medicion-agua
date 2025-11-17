@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Inicio Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-input
+    placeholder="Correo"
+    type="email"
+    [(ngModel)]="email">
+  </ion-input>
+
+  <ion-input
+    placeholder="Contraseña"
+    type="password"
+    [(ngModel)]="password">
+  </ion-input>
+
+  <ion-button 
+    expand="full" 
+    (click)="login()"
+    [disabled]="loading">
+    <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+    <span *ngIf="!loading">Ingresar</span>
+  </ion-button>
+
+  <ion-button 
+    expand="full" 
+    fill="outline" 
+    color="medium" 
+    (click)="goToRegister()"
+    [disabled]="loading">
+    Crear nueva cuenta
+  </ion-button>
+
+  <ion-text color="danger" *ngIf="errorMsg">
+    <p class="ion-text-center">{{ errorMsg }}</p>
+  </ion-text>
+
+</ion-content>

@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear Cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input
+      label="Nombre completo"
+      labelPlacement="floating"
+      placeholder="Ingresa tu nombre"
+      [(ngModel)]="nombre">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Correo electrónico"
+      labelPlacement="floating"
+      type="email"
+      placeholder="correo@ejemplo.com"
+      [(ngModel)]="email">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Contraseña"
+      labelPlacement="floating"
+      type="password"
+      placeholder="Mínimo 6 caracteres"
+      [(ngModel)]="password">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Confirmar contraseña"
+      labelPlacement="floating"
+      type="password"
+      placeholder="Repite la contraseña"
+      [(ngModel)]="confirmPassword">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-select
+      label="Tipo de usuario"
+      labelPlacement="floating"
+      [(ngModel)]="rol">
+      <ion-select-option value="medidor">Medidor</ion-select-option>
+      <ion-select-option value="admin">Administrador</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button 
+    expand="full" 
+    (click)="register()"
+    [disabled]="loading"
+    class="ion-margin-top">
+    <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+    <span *ngIf="!loading">Crear Cuenta</span>
+  </ion-button>
+
+  <ion-button 
+    expand="full" 
+    fill="clear" 
+    (click)="goToLogin()">
+    ¿Ya tienes cuenta? Inicia sesión
+  </ion-button>
+
+  <ion-text color="danger" *ngIf="errorMsg">
+    <p class="ion-text-center">{{ errorMsg }}</p>
+  </ion-text>
+</ion-content>

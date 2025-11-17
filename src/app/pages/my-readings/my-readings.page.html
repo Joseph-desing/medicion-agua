@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mis Lecturas</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="logout()" style="font-size: 18px; font-weight: bold;">
+        Salir
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-button expand="full" color="success" (click)="goToRegisterReading()">
+    <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+    Nueva Lectura
+  </ion-button>
+
+  <div *ngIf="loading" class="ion-text-center ion-padding">
+    <ion-spinner></ion-spinner>
+    <p>Cargando lecturas...</p>
+  </div>
+
+  <div *ngIf="!loading && readings.length === 0" class="ion-text-center ion-padding">
+    <ion-icon name="document-text-outline" style="font-size: 64px; color: #ccc;"></ion-icon>
+    <p>No tienes lecturas registradas</p>
+    <ion-button fill="outline" (click)="goToRegisterReading()">
+      Registrar primera lectura
+    </ion-button>
+  </div>
+
+  <ion-card *ngFor="let r of readings">
+    <ion-card-header>
+      <ion-card-title>{{ r.valor_medidor }} m³</ion-card-title>
+      <ion-card-subtitle>{{ r.created_at | date:'dd/MM/yyyy HH:mm' }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <p><strong>Observación:</strong> {{ r.observacion || 'Sin observaciones' }}</p>
+      <p><strong>Ubicación:</strong> {{ r.latitud }}, {{ r.longitud }}</p>
+
+      <ion-button
+        expand="block"
+        fill="outline"
+        size="small"
+        [href]="getGoogleMapsLink(r.latitud, r.longitud)"
+        target="_blank">
+        <ion-icon name="map-outline" slot="start"></ion-icon>
+        Ver en Google Maps
+      </ion-button>
+
+      <div *ngIf="r.foto_medidor" class="ion-margin-top">
+        <p><strong>Foto del medidor:</strong></p>
+        <img [src]="r.foto_medidor" style="width: 100%; border-radius: 8px;">
+      </div>
+
+      <div *ngIf="r.foto_fachada" class="ion-margin-top">
+        <p><strong>Foto de la fachada:</strong></p>
+        <img [src]="r.foto_fachada" style="width: 100%; border-radius: 8px;">
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
